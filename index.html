@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lelkem ösvényein – Lélekhang Női Dobkör</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Nunito:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #efdfd2;
+    --warm-white: #efdfd2;
+    --sage: #7a8c6e;
+    --dark-sage: #4a5c40;
+    --forest: #2d3d28;
+    --earth: #9b7b5a;
+    --earth-light: #c4a882;
+    --text: #2d2820;
+    --text-light: #6b5f52;
+    --gold: #b8965a;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--warm-white);
+    color: var(--text);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(236,225,208,0.97);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(154,123,90,0.15);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .nav-logo-icon {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: var(--sage);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+
+  .nav-logo-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: var(--forest);
+    line-height: 1.2;
+  }
+
+  .nav-logo-text span {
+    display: block;
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--text-light);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  nav a.nav-link {
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  nav a.nav-link:hover { color: var(--dark-sage); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    overflow: hidden;
+    padding-top: 78px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: var(--cream);
+  }
+
+
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 80px 60px 80px 80px;
+    animation: fadeUp 1s ease both;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--earth);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--earth-light);
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 5vw, 64px);
+    font-weight: 300;
+    line-height: 1.12;
+    color: var(--forest);
+    margin-bottom: 16px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--dark-sage);
+  }
+
+  .hero-subtitle {
+    font-size: 15px;
+    color: var(--text-light);
+    line-height: 1.7;
+    margin-bottom: 48px;
+    max-width: 420px;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--dark-sage);
+    color: var(--cream);
+    text-decoration: none;
+    padding: 16px 32px;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+  }
+
+  .btn-primary:hover {
+    background: var(--forest);
+    transform: translateY(-1px);
+  }
+
+  .btn-primary .btn-icon { font-size: 16px; }
+
+  .hero-image {
+    position: relative;
+    z-index: 2;
+    height: 100vh;
+    overflow: hidden;
+    animation: fadeIn 1.4s ease both;
+  }
+
+  .hero-image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: url('hero.jpg') center top/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-drum-illustration {
+    width: 280px;
+    height: 280px;
+    position: relative;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* ── NEXT EVENT ── */
+  .event-strip {
+    background: var(--forest);
+    color: var(--cream);
+    padding: 60px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .event-strip-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    margin-bottom: 8px;
+  }
+
+  .event-strip-sub {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--earth-light);
+    margin-bottom: 32px;
+  }
+
+  .event-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .event-detail-icon {
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(196,168,130,0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .event-detail-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(245,240,232,0.85);
+  }
+
+  .event-detail-label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--earth-light);
+    margin-bottom: 3px;
+  }
+
+  .event-note {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--earth-light);
+    margin-top: 24px;
+  }
+
+  /* ── SIGNUP FORM ── */
+  .signup-box {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(196,168,130,0.25);
+    padding: 40px;
+  }
+
+  .signup-box h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 24px;
+    color: var(--cream);
+  }
+
+  .form-group {
+    margin-bottom: 16px;
+  }
+
+  .form-group input {
+    width: 100%;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(196,168,130,0.25);
+    color: var(--cream);
+    padding: 13px 16px;
+    font-size: 14px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+
+  .form-group input::placeholder { color: rgba(245,240,232,0.4); }
+  .form-group input:focus { border-color: var(--earth-light); }
+
+  .form-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 16px;
+    margin-bottom: 20px;
+  }
+
+  .form-checkbox input[type=checkbox] {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    accent-color: var(--earth-light);
+    cursor: pointer;
+  }
+
+  .form-checkbox label {
+    font-size: 12px;
+    color: rgba(245,240,232,0.6);
+    line-height: 1.5;
+    cursor: pointer;
+  }
+
+  .btn-submit {
+    width: 100%;
+    background: var(--earth);
+    color: var(--cream);
+    border: none;
+    padding: 15px;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-family: 'Nunito', sans-serif;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .btn-submit:hover { background: var(--gold); }
+
+  /* ── ABOUT ── */
+  .about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 520px;
+  }
+
+  .about-image {
+    background: url('about.jpg') center center/cover no-repeat;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .about-image-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .about-content {
+    padding: 80px 80px 80px 60px;
+    background: var(--cream);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--earth);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--earth-light);
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--forest);
+    margin-bottom: 28px;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--dark-sage);
+  }
+
+  .about-text p {
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--text-light);
+    margin-bottom: 16px;
+  }
+
+  .about-motto {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--dark-sage);
+    margin-top: 32px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(122,140,110,0.25);
+  }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials {
+    background: var(--warm-white);
+    padding: 100px 80px;
+    text-align: center;
+  }
+
+  .testimonials .section-label { justify-content: center; }
+  .testimonials .section-label::before { display: none; }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 60px;
+    text-align: left;
+  }
+
+  .testimonial-card {
+    background: var(--cream);
+    padding: 36px 32px;
+    border-left: 2px solid var(--earth-light);
+    position: relative;
+  }
+
+  .testimonial-quote {
+    font-size: 48px;
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--earth-light);
+    line-height: 0.8;
+    margin-bottom: 16px;
+    opacity: 0.6;
+  }
+
+  .testimonial-text {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--text-light);
+    font-style: italic;
+    margin-bottom: 20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+  }
+
+  .testimonial-author {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--earth);
+  }
+
+  /* ── FAQ ── */
+  .faq {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .faq-left {
+    background: var(--dark-sage);
+    padding: 100px 80px;
+    color: var(--cream);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .faq-left .section-label { color: var(--earth-light); }
+  .faq-left .section-label::before { background: var(--earth-light); }
+
+  .faq-left .section-title { color: var(--cream); }
+  .faq-left .section-title em { color: var(--earth-light); }
+
+  .faq-left p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: rgba(245,240,232,0.75);
+  }
+
+  .faq-right {
+    background: var(--cream);
+    padding: 100px 80px;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid rgba(154,123,90,0.2);
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 0;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--forest);
+    gap: 16px;
+  }
+
+  .faq-question:hover { color: var(--dark-sage); }
+
+  .faq-toggle {
+    width: 28px;
+    height: 28px;
+    border: 1px solid var(--earth-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--earth);
+    font-size: 18px;
+    transition: transform 0.3s;
+    line-height: 1;
+  }
+
+  .faq-item.open .faq-toggle { transform: rotate(45deg); }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s;
+  }
+
+  .faq-item.open .faq-answer { max-height: 200px; }
+
+  .faq-answer p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--text-light);
+    padding-bottom: 20px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--forest);
+    color: var(--cream);
+    padding: 60px 80px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .footer-left {
+    font-size: 13px;
+    line-height: 1.8;
+    color: rgba(245,240,232,0.6);
+  }
+
+  .footer-left a {
+    color: var(--earth-light);
+    text-decoration: none;
+  }
+
+  .footer-center {
+    text-align: center;
+  }
+
+  .footer-logo-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    color: var(--earth-light);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  .footer-motto {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: rgba(245,240,232,0.5);
+    margin-top: 6px;
+  }
+
+  .footer-right {
+    text-align: right;
+    font-size: 13px;
+    color: rgba(245,240,232,0.6);
+  }
+
+  /* ── SUCCESS MESSAGE ── */
+  .success-msg {
+    display: none;
+    text-align: center;
+    padding: 20px;
+    color: var(--earth-light);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 18px;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-18px); }
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon" style="background:none;padding:0;overflow:hidden;"><div style="width:64px;height:64px;border-radius:50%;overflow:hidden;margin:0 auto;"><img src="logo.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+    <div class="nav-logo-text">
+      Lelkem ösvényein
+      <span>Női élménytér</span>
+    </div>
+  </a>
+  <a href="#jelentkezes" class="nav-link">Csatlakozom</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+
+  
+</section>
+
+<!-- EVENT + SIGNUP -->
+<section class="event-strip" id="jelentkezes">
+  <div class="reveal">
+    <div class="event-strip-sub">Lélekhang &nbsp;·&nbsp; Női dobkör</div>
+    <div class="event-strip-heading">Következő alkalom</div>
+
+    <div class="event-detail">
+      <div class="event-detail-icon" style="background:none;border:none;width:36px;height:36px;flex-shrink:0;margin-top:2px;">
+        <svg viewBox="0 0 60 60" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8,18 C6,16 6,8 8,6 C16,2 44,2 52,6 C54,8 54,48 52,50 C44,54 16,54 8,50 C6,48 6,20 8,18Z" fill="rgba(122,140,110,0.15)" stroke="#c4a882" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6,20 C16,16 44,16 54,20" fill="none" stroke="#c4a882" stroke-width="2" stroke-linecap="round"/>
+          <path d="M20,6 L20,0 M40,6 L40,0" fill="none" stroke="#c4a882" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="20" cy="32" r="3.5" fill="#c4a882"/>
+          <circle cx="30" cy="32" r="3.5" fill="#c4a882"/>
+          <circle cx="40" cy="32" r="3.5" fill="#c4a882"/>
+          <circle cx="20" cy="44" r="3.5" fill="#c4a882"/>
+          <circle cx="30" cy="44" r="3.5" fill="#c4a882"/>
+          <circle cx="40" cy="44" r="3.5" fill="#b8965a" opacity="0.9"/>
+        </svg>
+      </div>
+      <div class="event-detail-text">
+        <div class="event-detail-label">Időpont</div>
+        2026. május 25. (hétfő)<br>18:30 – 20:00
+      </div>
+    </div>
+
+    <div class="event-detail">
+      <div class="event-detail-icon" style="background:none;border:none;width:36px;height:36px;flex-shrink:0;margin-top:2px;">
+        <svg viewBox="0 0 60 60" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
+          <path d="M30,4 C42,4 52,14 52,24 C52,38 30,56 30,56 C30,56 8,38 8,24 C8,14 18,4 30,4Z" fill="rgba(122,140,110,0.15)" stroke="#c4a882" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="30" cy="23" r="9" fill="#f5f0e8" stroke="#c4a882" stroke-width="2"/>
+          <circle cx="30" cy="23" r="3.5" fill="#c4a882"/>
+        </svg>
+      </div>
+      <div class="event-detail-text">
+        <div class="event-detail-label">Helyszín</div>
+        Fényzugoly közösségi tér<br>
+        1223 Budapest, Szent István u. 6.
+      </div>
+    </div>
+
+    <div class="event-note">Szeretettel várunk!</div>
+  </div>
+
+  
+
+  <div class="signup-box reveal" style="transition-delay:0.25s">
+    <h3>Csatlakozom az alkalomra</h3>
+    <form id="signupForm">
+      <div class="form-group">
+        <input type="text" id="name" name="name" placeholder="👤  Név" required>
+      </div>
+      <div class="form-group">
+        <input type="email" id="email" name="email" placeholder="✉  E-mail cím" required>
+      </div>
+      <div class="form-checkbox">
+        <input type="checkbox" id="newsletter" name="newsletter">
+        <label for="newsletter">A jelentkezéssel feliratkozom a hírlevélre. Bármikor leiratkozhatsz.</label>
+      </div>
+      <button type="submit" class="btn-submit">Jelentkezem</button>
+    </form>
+    <div class="success-msg" id="successMsg">
+      Köszönöm a jelentkezésedet! ✨<br>Hamarosan értesítünk a részletekről.
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="about-image">
+    </div>
+
+  <div class="about-content reveal">
+    <div class="section-label">Rólunk</div>
+    <h2 class="section-title">Egy tér, ahol<br><em>lehetsz. Ahogy vagy.</em></h2>
+    <div class="about-text">
+      <p>Hiszünk abban, hogy a közösség megtartó energiája és a dob ősi hangja segít visszatalálni önmagunkhoz.</p>
+      <p>Alkalmaink során különböző utakon kapcsolódhatsz magadhoz: hangban, csendben, mozgásban és megosztásban.</p>
+      <p>Nálunk nem kell tapasztalat. Csak nyitottság önmagad felé.</p>
+    </div>
+    <div class="about-motto">Egy tér, ahol lehetsz. Ahogy vagy.</div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-label">Vélemények 🤍</div>
+  <h2 class="section-title" style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--forest);">Mit mondanak <em style="font-style:italic;color:var(--dark-sage);">résztvevőink</em></h2>
+
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal">
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">Olyan mélyre tudtam menni magamban, ahová régóta nem. Hálás vagyok ezért a térért és a szeretetért.</p>
+      <div class="testimonial-author">– Anna</div>
+    </div>
+    <div class="testimonial-card reveal" style="transition-delay:0.1s">
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">Minden alkalom után könnyebb, szabadabb és boldogabb vagyok. Igazi feltöltődés!</p>
+      <div class="testimonial-author">– Eszter</div>
+    </div>
+    <div class="testimonial-card reveal" style="transition-delay:0.2s">
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">Itt végre lehettem önmagam, és közben mégis kapcsolódtam más csodás nőkhöz.</p>
+      <div class="testimonial-author">– Nóri</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="faq-left reveal">
+    <div class="section-label">Kérdések</div>
+    <h2 class="section-title">Gyakori<br><em>kérdések</em></h2>
+    <p>Ha valami mégsem hangzik egyértelműen, írj nekünk bátran – szívesen válaszolunk.</p>
+    <br>
+    <a href="mailto:lelkemosvenyein@gmail.com" style="color:var(--earth-light);font-size:13px;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;">
+      lelkemosvenyein@gmail.com
+    </a>
+  </div>
+
+  <div class="faq-right">
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        Kell valamilyen tapasztalat az alkalmakhoz?
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer"><p>Nem, egyáltalán nem szükséges. A dobkör minden nyitott szívű nőnek szól, akár először fogja kezébe a dobot.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        Mit hozzak magammal?
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer"><p>Csak kényelmes ruhát és nyitott szívet. Az eszközöket mi biztosítjuk.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        Hogyan tudok jelentkezni?
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer"><p>Az oldalon lévő jelentkezési formon keresztül, vagy emailben a fenti elérhetőségünkön.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        Mi történik rossz idő esetén?
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer"><p>Az alkalmak zárt térben zajlanak, így az időjárás nem befolyásolja a programot.</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        Lemondhatom a részvételemet?
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer"><p>Igen, kérjük jelezd emailben legalább 24 órával előre. Köszönjük, ha értesítesz!</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    Kapcsolat:<br>
+    <a href="mailto:lelkemosvenyein@gmail.com">lelkemosvenyein@gmail.com</a>
+  </div>
+  <div class="footer-center">
+    <div style="width:64px;height:64px;border-radius:50%;overflow:hidden;margin:0 auto;">
+      <img src="logo.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+    </div>
+    <div class="footer-logo-text">Lelkem ösvényein</div>
+    <div class="footer-motto">Kapcsolódás önmagadhoz.</div>
+  </div>
+  <div class="footer-right">
+    Lélekhang · Női dobkör<br>Budapest
+  </div>
+</footer>
+
+<script>
+// FAQ toggle
+function toggleFaq(el) {
+  const item = el.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// Scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.12 });
+revealEls.forEach(el => observer.observe(el));
+
+// Form submit → mailto
+document.getElementById('signupForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const newsletter = document.getElementById('newsletter').checked;
+
+  const subject = encodeURIComponent('Jelentkezés – Lélekhang dobkör (május 25.)');
+  const body = encodeURIComponent(
+    `Szia!\n\nSzeretnék jelentkezni a következő Lélekhang dobköri alkalomra.\n\nNév: ${name}\nE-mail: ${email}\nHírlevél: ${newsletter ? 'Igen' : 'Nem'}\n\nKöszönöm!`
+  );
+
+  window.location.href = `mailto:lelkemosvenyein@gmail.com?subject=${subject}&body=${body}`;
+
+  this.style.display = 'none';
+  document.getElementById('successMsg').style.display = 'block';
+});
+</script>
+</body>
+</html>
